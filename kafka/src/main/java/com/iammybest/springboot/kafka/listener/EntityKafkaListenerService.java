@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.iammybest.springboot.vo.KafkaEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
@@ -26,10 +27,10 @@ public class EntityKafkaListenerService {
             containerFactory = "entityKafkaListenerContainerFactory",
             topicPartitions = {@TopicPartition(topic = "deng-entity", partitions = {"0","1"})}
             )
-    private void kafkaListenerEntityByte(List<ConsumerRecord<String, KafkaEntity>> dataList){
-        log.info("Deng|entity-batch List| {}", JSON.toJSONString(dataList));
-        for (ConsumerRecord<String, KafkaEntity> record:dataList){
-            log.info("Deng|entity-batch FOR| {}",record.toString());
+    private void kafkaListenerEntityByte(ConsumerRecords<String, KafkaEntity> consumerRecords){
+        log.info("Deng|List<ConsumerRecord<String, KafkaEntity>>| {}", JSON.toJSONString(consumerRecords));
+        for (ConsumerRecord<String, KafkaEntity> record:consumerRecords){
+            log.info("Deng|entity-batch FOR| offset:{} key:{} value:{}",record.offset(),record.key(),record.value());
         }
     }
 
@@ -38,15 +39,21 @@ public class EntityKafkaListenerService {
             topicPartitions = {@TopicPartition(topic = "deng-entity", partitions = {"0","1"})}
     )
     private void kafkaListenerEntityList(List<KafkaEntity> dataList){
-        log.info("Deng|entity-list List| {}", JSON.toJSONString(dataList));
+        log.info("Deng|List<KafkaEntity> List| {}", JSON.toJSONString(dataList));
         for (KafkaEntity record:dataList){
-            log.info("Deng|entity-list FOR| {}",record.toString());
+            log.info("Deng|List<KafkaEntity> FOR| {}",record.toString());
         }
     }
     @KafkaListener(id = "deng-entity-2",groupId = "deng-group-entity",
             containerFactory = "entityKafkaListenerContainerFactory",
             topicPartitions = {@TopicPartition(topic = "deng-entity", partitions = {"0","1"})})
+    private void kafkaListenerEntityRecord(ConsumerRecord<String, KafkaEntity> record){
+        log.info("Deng|ConsumerRecord<String, KafkaEntity>|: offset:{} key:{} value:{}",record.offset(),record.key(),record.value());
+    }
+    @KafkaListener(id = "deng-entity-3",groupId = "deng-group-entity",
+            containerFactory = "entityKafkaListenerContainerFactory",
+            topicPartitions = {@TopicPartition(topic = "deng-entity", partitions = {"0","1"})})
     private void kafkaListenerEntity0(KafkaEntity entity){
-            log.info("Deng|entity|: {}",entity.toString());
+            log.info("Deng|KafkaEntity|: {}",entity.toString());
     }
 }

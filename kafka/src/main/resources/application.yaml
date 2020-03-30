@@ -8,7 +8,7 @@ kafka:
     bootstrap-servers: deng:9091,deng:9092,deng:9093
     consumer:
       #批量消费 单次拉取最大记录数量
-      max-poll-records: 5
+      max-poll-records: 3
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
@@ -19,6 +19,7 @@ kafka:
   byte-array:
     bootstrap-servers: deng:9091,deng:9092,deng:9093
     consumer:
+#      max-poll-records: 3
       value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
       key-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
     producer:

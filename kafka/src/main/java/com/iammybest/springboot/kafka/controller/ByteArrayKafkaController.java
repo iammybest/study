@@ -7,6 +7,7 @@ package com.iammybest.springboot.kafka.controller;
  **/
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.util.concurrent.FailureCallback;
 import org.springframework.util.concurrent.SuccessCallback;
@@ -23,28 +24,29 @@ import javax.annotation.Resource;
 public class ByteArrayKafkaController {
 
     @Resource
-    KafkaTemplate<byte[],byte[]> autoKafkaTemplate;
+    KafkaTemplate<byte[],byte[]> byteArrayKafkaTemplate;
     @GetMapping("sendByteArray")
-    public String sendEntity(@RequestParam("value")String value,
+    public String sendEntity(@RequestParam("key")String key,
+                             @RequestParam("value")String value,
                              @RequestParam(value = "batch",required = false,defaultValue = "false")boolean batch,
                              @RequestParam(value = "batchSize",required = false,defaultValue = "1")int batchSize){
         if(batch){
             for (int i =0;i<batchSize;i++){
-                autoKafkaTemplate.send("deng-byte-array",value.getBytes()).addCallback(
+                byteArrayKafkaTemplate.send(new ProducerRecord<byte[], byte[]>("deng-byte-array",(key+i).getBytes(),(value+i).getBytes())).addCallback(
                         new SuccessCallback() {
                             @Override
                             public void onSuccess(Object o) {
-                                log.info("Deng|SUCCESS|send message {}",value);
+                                log.info("Deng|SUCCESS|send byte-array message {}",value);
                             }
                         }, new FailureCallback() {
                             @Override
                             public void onFailure(Throwable throwable) {
-                                log.error("Deng|FAILED|send message {}",value);
+                                log.error("Deng|FAILED|send byte-array message {}",value);
                             }
                         });
             }
         }else{
-            autoKafkaTemplate.send("deng-byte-array",value.getBytes());
+            byteArrayKafkaTemplate.send(new ProducerRecord<byte[], byte[]>("deng-byte-array",key.getBytes(),value.getBytes()));
         }
         return "Send SUCCESS";
     }
