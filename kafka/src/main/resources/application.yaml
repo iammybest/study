@@ -1,0 +1,41 @@
+
+server:
+  port: 8888
+
+#自定义管理的Kafka配置
+kafka:
+  auto:
+    bootstrap-servers: deng:9091,deng:9092,deng:9093
+    consumer:
+      #批量消费 单次拉取最大记录数量
+      max-poll-records: 5
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      missing-topics-fatal: false
+  byte-array:
+    bootstrap-servers: deng:9091,deng:9092,deng:9093
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      key-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+  entity:
+    bootstrap-servers: deng:9091,deng:9092,deng:9093
+    consumer:
+      max-poll-records: 5
+      groupId: kafka-group-entity
+      value-deserializer: com.iammybest.springboot.kafka.serialization.EntityDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      value-serializer: com.iammybest.springboot.kafka.serialization.EntitySerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

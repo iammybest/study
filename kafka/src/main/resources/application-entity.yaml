@@ -1,0 +1,9 @@
+
+#spring:
+#  kafka:
+    consumer:
+      value-deserializer: com.iammybest.springboot.kafka.serialization.EntityDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      value-serializer: com.iammybest.springboot.kafka.serialization.EntitySerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer

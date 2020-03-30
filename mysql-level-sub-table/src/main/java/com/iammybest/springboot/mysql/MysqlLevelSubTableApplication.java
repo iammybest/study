@@ -1,0 +1,13 @@
+package com.iammybest.springboot.mysql;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MysqlLevelSubTableApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(MysqlLevelSubTableApplication.class, args);
+    }
+
+}
