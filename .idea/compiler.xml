@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="task-scheduler" />
+        <module name="taks-scheduler" />
         <module name="vo" />
         <module name="kafka" />
-        <module name="mysql-level-sub-table" />
+        <module name="task-scheduler" />
         <module name="dao" />
-        <module name="taks-scheduler" />
+        <module name="mysql-level-sub-table" />
         <module name="domain" />
       </profile>
     </annotationProcessing>
