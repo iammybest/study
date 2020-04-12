@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="hello" class="com.iammybest.thrift.impl.HelloImpl"></bean>
+
+    <!--Zookeeper配置-->
+    <bean id="zkClient" class="org.I0Itec.zkclient.ZkClient">
+        <constructor-arg index="0" value="192.168.1.200:2181"/>
+        <constructor-arg index="1" value="3000"/>
+    </bean>
+    <!--thrift服务注册配置-->
+    <bean id="exampleServer" class="com.iammybest.thrift.server.ZkThriftProvider" init-method="init" destroy-method="close">
+        <!--Zookeeper配置-->
+        <property name="zkClient" ref="zkClient"></property>
+        <!--注册根目录配置-->
+        <property name="zkRootPath" value="iammybest"></property>
+        <!--服务名称作为服务注册节点名称-->
+        <property name="serverName" value="thrift"></property>
+        <!--暴露服务的接口 可以暴露多个接口 调用时相应修改-->
+        <property name="port" value="9900"/>
+        <property name="vesion" value="v1"></property>
+        <property name="serviceList">
+            <map>
+                <entry key="HelloService">
+                    <ref bean="hello"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

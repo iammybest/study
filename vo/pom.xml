@@ -9,7 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <groupId>com.iammybest.springboot</groupId>
-  <artifactId>vo</artifactId>
+  <artifactId>mrdeng-vo</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>vo</name>
   <properties>

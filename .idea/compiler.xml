@@ -2,28 +2,62 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="taks-scheduler" />
+        <module name="mrdeng-distributed-lock" />
+        <module name="mrdeng-spring-mvc" />
+        <module name="mrdeng-qr" />
         <module name="vo" />
-        <module name="kafka" />
-        <module name="task-scheduler" />
-        <module name="dao" />
-        <module name="mysql-level-sub-table" />
-        <module name="domain" />
+        <module name="mrdeng-io" />
+        <module name="mrdeng-lock" />
+        <module name="mrdeng-thread" />
+        <module name="mrdeng-task-scheduler" />
+        <module name="mrdeng-dao" />
+        <module name="mrdeng-aliyunmq" />
+        <module name="mrdeng-mongo" />
+        <module name="mrdeng-domain" />
+        <module name="mrdeng-kafka" />
+        <module name="mrdeng-solr" />
+        <module name="mrdeng-common" />
+        <module name="mrdeng-jdk8new" />
+        <module name="mrdeng-annotation" />
+        <module name="mrdeng-image" />
+        <module name="mrdeng-ehcache" />
+        <module name="mrdeng-thrift" />
+        <module name="mrdeng-model" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mysql-level-sub-table" target="1.8" />
+      <module name="iammybest-springboot" target="1.5" />
+      <module name="mrdeng-aliyunmq" target="1.5" />
+      <module name="mrdeng-annotation" target="1.5" />
+      <module name="mrdeng-common" target="1.5" />
+      <module name="mrdeng-dao" target="1.5" />
+      <module name="mrdeng-distributed-lock" target="1.5" />
+      <module name="mrdeng-domain" target="1.5" />
+      <module name="mrdeng-ehcache" target="1.5" />
+      <module name="mrdeng-image" target="1.5" />
+      <module name="mrdeng-io" target="1.5" />
+      <module name="mrdeng-jdk8new" target="8" />
+      <module name="mrdeng-kafka" target="1.5" />
+      <module name="mrdeng-lock" target="1.5" />
+      <module name="mrdeng-model" target="1.5" />
+      <module name="mrdeng-mongo" target="1.5" />
+      <module name="mrdeng-qr" target="1.5" />
+      <module name="mrdeng-solr" target="1.5" />
+      <module name="mrdeng-spring-mvc" target="1.5" />
+      <module name="mrdeng-task-scheduler" target="1.5" />
+      <module name="mrdeng-thread" target="1.5" />
+      <module name="mrdeng-thrift" target="1.5" />
+      <module name="vo" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="kafka" options="-parameters" />
-      <module name="mysql-level-sub-table" options="-parameters" />
-      <module name="taks-scheduler" options="" />
+      <module name="mrdeng-kafka" options="" />
     </option>
   </component>
 </project>

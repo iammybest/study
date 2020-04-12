@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="watcher" class="com.iammybest.thrift.ZkWatcher">
+        <property name="thriftClient" ref="zkThriftClient"></property>
+    </bean>
+    <bean id="zooKeeper" class="org.apache.zookeeper.ZooKeeper">
+        <constructor-arg index="0" value="192.168.1.200:2181"/>
+        <constructor-arg index="1" value="3000"/>
+        <constructor-arg index="2" ref="watcher"/>
+    </bean>
+    <bean id="zkThriftClient" class="com.iammybest.thrift.client.ZkThriftConsumer" init-method="init" destroy-method="close">
+        <property name="port" value="9900" />
+        <!--Zookeeper配置-->
+        <property name="zooKeeper" ref="zooKeeper"></property>
+        <!--注册根目录配置-->
+        <property name="zkRootPath" value="iammybest"></property>
+        <!--服务名称作为服务注册节点名称-->
+        <property name="serverName" value="thrift"></property>
+        <property name="vesion" value="v1"></property>
+        <property name="serviceMap">
+            <map>
+                <entry key = "HelloService">
+                    <value>com.iammybest.thrift.Hello</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

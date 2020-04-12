@@ -10,31 +10,39 @@
     <name>iammybest-springboot</name>
 
     <modules>
-        <module>task-scheduler</module>
-        <module>dao</module>
-        <module>domain</module>
+
+        <module>mrdeng-dao</module>
+        <module>mrdeng-domain</module>
         <module>vo</module>
-        <module>kafka</module>
+        <module>mrdeng-aliyunmq</module>
+        <module>mrdeng-annotation</module>
+        <module>mrdeng-common</module>
+        <module>mrdeng-distributed-lock</module>
+        <module>mrdeng-ehcache</module>
+        <module>mrdeng-image</module>
+        <module>mrdeng-io</module>
+        <module>mrdeng-jdk8new</module>
+        <module>mrdeng-kafka</module>
+        <module>mrdeng-lock</module>
+        <module>mrdeng-model</module>
+        <module>mrdeng-mongo</module>
+        <module>mrdeng-qr</module>
+        <module>mrdeng-solr</module>
+        <module>mrdeng-spring-mvc</module>
+        <module>mrdeng-task-scheduler</module>
+        <module>mrdeng-thread</module>
+        <module>mrdeng-thrift</module>
     </modules>
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <compiler-plugin.version>2.5.1</compiler-plugin.version>
-        <source-plugin.version>3.0.1</source-plugin.version>
-        <apt-plugin.version>1 .1.3</apt-plugin.version>
         <lombok.version>1.18.6</lombok.version>
-        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
-        <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
-        <spring.version>5.1.2.RELEASE</spring.version>
-        <spring-boot-admin.version>2.1.0</spring-boot-admin.version>
+        <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>2.11.1</log4j.version>
-        <sharding-sphere.version>4.0.0-RC3</sharding-sphere.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--            dependecy module-->
             <dependency>
                 <groupId>com.iammybest.springboot</groupId>
                 <artifactId>domain</artifactId>
@@ -42,49 +50,65 @@
             </dependency>
             <dependency>
                 <groupId>com.iammybest.springboot</groupId>
-                <artifactId>dao</artifactId>
+                <artifactId>mrdeng-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.iammybest.springboot</groupId>
-                <artifactId>vo</artifactId>
+                <artifactId>mrdeng-vo</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.iammybest.springboot</groupId>
-                <artifactId>kafka</artifactId>
+                <artifactId>mrdeng-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.iammybest.springboot</groupId>
+                <artifactId>mrdeng-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.iammybest.springboot</groupId>
+                <artifactId>mrdeng-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.iammybest.springboot</groupId>
+                <artifactId>mrdeng-thrift</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--            dependecy module-->
             <!-- spring -->
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot-admin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
-                <version>${spring-boot.version}</version>
-                <exclusions>
-                    <!-- 在starter包中排除老的logging包，为了避免引入logback，然后在项目中使用log4j2的starter -->
-                    <exclusion>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-                <exclusions>
-                    <!-- 由于JCL的运行时查找实现类存在很多问题，Spring官方文档建议不再使用该框架，改由slf4j来输出日志 -->
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>de.codecentric</groupId>-->
+<!--                <artifactId>spring-boot-admin-starter-client</artifactId>-->
+<!--                <version>${spring-boot-admin.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter</artifactId>-->
+<!--                <version>${spring-boot.version}</version>-->
+<!--                <exclusions>-->
+<!--                    &lt;!&ndash; 在starter包中排除老的logging包，为了避免引入logback，然后在项目中使用log4j2的starter &ndash;&gt;-->
+<!--                    <exclusion>-->
+<!--                        <groupId>org.springframework.boot</groupId>-->
+<!--                        <artifactId>spring-boot-starter-logging</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework</groupId>-->
+<!--                <artifactId>spring-core</artifactId>-->
+<!--                <version>${spring.version}</version>-->
+<!--                <exclusions>-->
+<!--                    &lt;!&ndash; 由于JCL的运行时查找实现类存在很多问题，Spring官方文档建议不再使用该框架，改由slf4j来输出日志 &ndash;&gt;-->
+<!--                    <exclusion>-->
+<!--                        <groupId>commons-logging</groupId>-->
+<!--                        <artifactId>commons-logging</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+<!--            </dependency>-->
             <dependency>
                 <!-- 通过BOM文件的方式引入spring boot，如果需要覆盖该BOM引入的包，请在该BOM之前定义需要覆盖的包 -->
                 <groupId>org.springframework.boot</groupId>
@@ -93,20 +117,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- for spring boot -->
-            <dependency>
-                <groupId>org.apache.shardingsphere</groupId>
-                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-                <version>${sharding-sphere.version}</version>
-            </dependency>
-
-            <!-- for spring namespace -->
-            <dependency>
-                <groupId>org.apache.shardingsphere</groupId>
-                <artifactId>sharding-jdbc-spring-namespace</artifactId>
-                <version>${sharding-sphere.version}</version>
-            </dependency>
-            <!-- spring end -->
 
             <!-- cglib -->
             <dependency>
@@ -138,53 +148,148 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.67</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-solr</artifactId>
+                <version>2.1.0.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-solrj</artifactId>
+                <version>5.5.3</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>6.0.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>0.9.5.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.openservices</groupId>
+                <artifactId>ons-client</artifactId>
+                <version>1.2.7.Final</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.12</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.swagger/swagger-core -->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-core</artifactId>
+                <version>1.5.12</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>2.6.1</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.6.1</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+
+            <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.4.2</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>1.3.1</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>1.3.5</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper</artifactId>
+                <version>3.4.0</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.thrift/libthrift -->
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>0.10.0</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>3.4.9</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>0.10</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>3.3.0</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>3.3.0</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-test -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-client</artifactId>
+                <version>3.3.0</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-test -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-test</artifactId>
+                <version>3.3.0</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+                <version>3.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>2.2</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- compile plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${compiler-plugin.version}</version>
-                </plugin>
-                <!-- jgitflow plugin -->
-                <plugin>
-                    <groupId>external.atlassian.jgitflow</groupId>
-                    <artifactId>jgitflow-maven-plugin</artifactId>
-                    <version>${jgitflow-plugin.version}</version>
-                    <configuration>
-                        <noDeploy>true</noDeploy>
-                        <pushReleases>true</pushReleases>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${source-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.mysema.maven</groupId>
-                    <artifactId>apt-maven-plugin</artifactId>
-                    <version>${apt-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 </project>

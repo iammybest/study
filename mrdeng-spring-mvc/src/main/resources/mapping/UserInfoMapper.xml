@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iammybest.spring.mvc.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.iammybest.spring.mvc.model.UserInfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="birthday" jdbcType="BIGINT" property="birthday" />
+    <result column="lastLoginTime" jdbcType="BIGINT" property="lastlogintime" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="authenticate" jdbcType="INTEGER" property="authenticate" />
+    <result column="mask" jdbcType="BIT" property="mask" />
+    <result column="del" jdbcType="BIT" property="del" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="official" jdbcType="INTEGER" property="official" />
+    <result column="modify_time" jdbcType="BIGINT" property="modifyTime" />
+    <result column="level_id" jdbcType="INTEGER" property="levelId" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="app_type" jdbcType="INTEGER" property="appType" />
+  </resultMap>
+  <insert id="insert" parameterType="com.iammybest.spring.mvc.model.UserInfo">
+    insert into user (id, nickname, password, 
+      phone, avatar, address, 
+      birthday, lastLoginTime, idcard, 
+      type, sex, create_time, 
+      authenticate, mask, del, signature, 
+      official, modify_time, level_id, 
+      money, app_type)
+    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=BIGINT}, #{lastlogintime,jdbcType=BIGINT}, #{idcard,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, 
+      #{authenticate,jdbcType=INTEGER}, #{mask,jdbcType=BIT}, #{del,jdbcType=BIT}, #{signature,jdbcType=VARCHAR}, 
+      #{official,jdbcType=INTEGER}, #{modifyTime,jdbcType=BIGINT}, #{levelId,jdbcType=INTEGER}, 
+      #{money,jdbcType=INTEGER}, #{appType,jdbcType=INTEGER})
+  </insert>
+
+  <select id="selectByNickname" resultType="com.iammybest.spring.mvc.model.UserInfo">
+    SELECT *
+    FROM user
+    WHERE nickname=#{nickname}
+  </select>
+</mapper>
