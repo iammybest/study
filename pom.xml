@@ -13,7 +13,7 @@
 
         <module>mrdeng-dao</module>
         <module>mrdeng-domain</module>
-        <module>vo</module>
+        <module>mrdeng-vo</module>
         <module>mrdeng-aliyunmq</module>
         <module>mrdeng-annotation</module>
         <module>mrdeng-common</module>
@@ -45,7 +45,7 @@
             <!--            dependecy module-->
             <dependency>
                 <groupId>com.iammybest.springboot</groupId>
-                <artifactId>domain</artifactId>
+                <artifactId>mrdeng-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

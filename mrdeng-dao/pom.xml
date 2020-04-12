@@ -17,7 +17,7 @@
   <dependencies>
     <dependency>
       <groupId>com.iammybest.springboot</groupId>
-      <artifactId>domain</artifactId>
+      <artifactId>mrdeng-domain</artifactId>
     </dependency>
   </dependencies>
 
