@@ -7,7 +7,7 @@
         <artifactId>iammybest-spring-boot</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>mreng-task-scheduler</artifactId>
+    <artifactId>mrdeng-task-scheduler</artifactId>
     <groupId>com.iammybest.springboot</groupId>
     <properties>
         <java.version>1.8</java.version>
