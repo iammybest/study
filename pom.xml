@@ -32,6 +32,7 @@
         <module>mrdeng-task-scheduler</module>
         <module>mrdeng-thread</module>
         <module>mrdeng-thrift</module>
+        <module>mrdeng-multi-hibernate-datasource</module>
     </modules>
     <properties>
         <lombok.version>1.18.6</lombok.version>
