@@ -10,7 +10,6 @@
     <name>iammybest-spring-boot</name>
 
     <modules>
-
         <module>mrdeng-dao</module>
         <module>mrdeng-domain</module>
         <module>mrdeng-vo</module>
@@ -19,6 +18,7 @@
         <module>mrdeng-common</module>
         <module>mrdeng-distributed-lock</module>
         <module>mrdeng-ehcache</module>
+        <module>mrdeng-hbase</module>
         <module>mrdeng-image</module>
         <module>mrdeng-io</module>
         <module>mrdeng-jdk8new</module>
@@ -79,37 +79,6 @@
                 <artifactId>mrdeng-thrift</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--            dependecy module-->
-            <!-- spring -->
-<!--            <dependency>-->
-<!--                <groupId>de.codecentric</groupId>-->
-<!--                <artifactId>spring-boot-admin-starter-client</artifactId>-->
-<!--                <version>${spring-boot-admin.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
-<!--                <exclusions>-->
-<!--                    &lt;!&ndash; 在starter包中排除老的logging包，为了避免引入logback，然后在项目中使用log4j2的starter &ndash;&gt;-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.springframework.boot</groupId>-->
-<!--                        <artifactId>spring-boot-starter-logging</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework</groupId>-->
-<!--                <artifactId>spring-core</artifactId>-->
-<!--                <version>${spring.version}</version>-->
-<!--                <exclusions>-->
-<!--                    &lt;!&ndash; 由于JCL的运行时查找实现类存在很多问题，Spring官方文档建议不再使用该框架，改由slf4j来输出日志 &ndash;&gt;-->
-<!--                    <exclusion>-->
-<!--                        <groupId>commons-logging</groupId>-->
-<!--                        <artifactId>commons-logging</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
-<!--            </dependency>-->
             <dependency>
                 <!-- 通过BOM文件的方式引入spring boot，如果需要覆盖该BOM引入的包，请在该BOM之前定义需要覆盖的包 -->
                 <groupId>org.springframework.boot</groupId>
