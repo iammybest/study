@@ -295,7 +295,9 @@ public class ExcelUtils {
                     if (value != null) {
                         if (type == Date.class) {
                             cell.setCellValue(value.toString());
-                        } else {
+                        }else if (type == Double.class||type == double.class) {
+                            cell.setCellValue((double)value);
+                        }  else {
                             cell.setCellValue(value.toString());
                         }
                         cell.setCellValue(value.toString());

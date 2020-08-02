@@ -60,13 +60,19 @@ public class StatisticsHandler {
             refererChangeMap.put(accountStaff.getAccount(),accountStaff.getReferrer());
         }
         List<Deposit> sourceDatas = ExcelUtils.readExcel(Deposit.class, sourceFile);
+        List<Deposit> yybDeposit = new ArrayList<>();
         //根据最开始 账号推荐人修正 和 推荐人修正 修正账号推荐人信息
-
         log.info("开始修正{}原始数据............",sourceFileName);
         for (Deposit deposit:sourceDatas){
+            if(!StringUtils.isEmpty(deposit.getReferrer())&&deposit.getReferrer().equalsIgnoreCase("营业部")){
+                deposit.setRole("原始为营业部");
+            }
             //修正推荐人
             if(idReffererMap.containsKey(deposit.getIdNumber())){
                 deposit.setReferrer(idReffererMap.get(deposit.getIdNumber()));
+                if(deposit.getReferrer().equalsIgnoreCase("营业部")){
+                    deposit.setRole("账号推荐人修正表修正");
+                }
             }
             if(refererChangeMap.containsKey(deposit.getReferrer())){
                 deposit.setReferrer(refererChangeMap.get(deposit.getReferrer()));
@@ -74,11 +80,12 @@ public class StatisticsHandler {
             //20200430以后再为空设置为 营业部
             if(StringUtils.isEmpty(deposit.getReferrer())){
                 deposit.setReferrer("营业部");
+                deposit.setRole("账号推荐人为空修正");
             }
         }
         log.info("结束修正原始数据............");
         File correctSourceFile = ExcelUtils.writeExcel(sourceDatas,Deposit.class,sourceFileNames[0],outPath+sourceFileNames[0]+"_数据修正.xlsx");
-        log.info("原始数据修正结果输出到：{}路径下{}文件中",correctSourceFile.getPath(),correctSourceFile.getName());
+        log.info("原始数据修正结果输出到{}文件中",correctSourceFile.getPath());
         //加载花名册
 
         List<Referer> refererList = ExcelUtils.readExcel(Referer.class, refererFile);
@@ -102,12 +109,24 @@ public class StatisticsHandler {
             if(refererBalanceMap.containsKey(deposit.getReferrer())){
                 refererBalanceMap.get(deposit.getReferrer()).setBalance(refererBalanceMap.get(deposit.getReferrer()).getBalance()+deposit.getBalance());
                 refererBalanceMap.get(deposit.getReferrer()).setPerDayBalance(refererBalanceMap.get(deposit.getReferrer()).getBalance()+deposit.getPerDayBalance());
+                if(refererBalanceMap.get(deposit.getReferrer()).getDepartment().equalsIgnoreCase("营业部")){
+                    if(StringUtils.isEmpty(deposit.getRole())){
+                        if(!refererBalanceMap.get(deposit.getReferrer()).getName().equalsIgnoreCase("营业部")){
+                            deposit.setRole("营业部员工");
+                        }else{
+                            deposit.setRole("原始数据为营业部");
+                        }
+                    }
+                    yybDeposit.add(deposit);
+                }
             }else{
                 cntBalance+=deposit.getBalance();
                 cntPerDayBalance+=deposit.getPerDayBalance();
                 noRefererDeposits.add(deposit);
             }
+
         }
+        ExcelUtils.writeExcel(yybDeposit, Deposit.class, "营业部客户",outPath+"营业部客户.xlsx");
 
         List<RefererBalanceVo> vos = new ArrayList<>();
         for(Referer referer :refererList){
@@ -119,12 +138,12 @@ public class StatisticsHandler {
         }
         log.info("总共"+noRefererDeposits.size()+"无推荐人 总存款："+decimalFormat.format(cntBalance)+"  总日均："+decimalFormat.format(cntPerDayBalance));
         File resultFile = ExcelUtils.writeExcel(vos, RefererBalanceVo.class, sourceFileNames[0] + "统计结果", outPath + sourceFileNames[0] + "_统计结果.xlsx");
-        log.info("统计结果 文件输出到：{}路径下{}文件中",resultFile.getPath(),resultFile.getName());
+//        log.info("统计结果 文件输出到：{}路径下{}文件中",resultFile.getPath(),resultFile.getName());
         // TODO: 2020/6/20 存在一些未对应上的 在推荐人修正里面 将推荐人对应上 再次执行 数据修正 再统计
 
         File outResultFile = ExcelUtils.writeExcel(noRefererDeposits,Deposit.class,sourceFileNames[0]+"花名册中不存在",outPath+sourceFileNames[0]+"_花名册中不存在.xlsx");
 
-        log.info("总共{}推荐人不在花名册中 对应原始数据：{}路径下{}文件中",noRefererDeposits.size(),outResultFile.getPath(),outResultFile.getName());
+        log.info("总共{}推荐人不在花名册中 输出到{}文件中",noRefererDeposits.size(),outResultFile.getPath());
 
         return "统计成功";
     }
@@ -141,8 +160,9 @@ public class StatisticsHandler {
         }
 
         List<ReportVo> result = new ArrayList<>();
-        double firstTotalBalance=0D,firstTotalPerDayBalance=0D,secondTotalBalance=0D,
-                secondTotalPerDayBalance=0D,totalDiffBalance=0,totalDiffPerDayBalance=0;
+        double firstDepartmentTotalBalance=0D,firstDepartmentTotalPerDayBalance=0D,secondDepartmentTotalBalance=0D,
+                secondDepartmentTotalPerDayBalance=0D,totalDepartmentDiffBalance=0,totalDepartmentDiffPerDayBalance=0;
+        double firstTotalBalance=0D,firstTotalPerDayBalance=0D,secondTotalBalance=0D,secondTotalPerDayBalance=0D;
         ReportVo tempVo = null;
         for(int index = 0;index<firstDataList.size()&&index<secondDataList.size();index++){
             RefererBalance first=firstDataList.get(index);
@@ -151,42 +171,48 @@ public class StatisticsHandler {
             vo.setDepartment(first.getDepartment());
             vo.setName(first.getName());
             vo.setReferrer(first.getReferrer());
-            vo.setFirstBalance(decimalFormat.format(first.getBalance()/10000));
-            vo.setFirstPerDayBalance(decimalFormat.format(first.getPerDayBalance()/10000));
-            vo.setSecondBalance(decimalFormat.format(second.getBalance()/10000));
-            vo.setSecondPerDayBalance(decimalFormat.format(second.getPerDayBalance()/10000));
-            vo.setDiffBalance(decimalFormat.format((first.getBalance()-second.getBalance())/10000));
-            vo.setDiffPerDayBalance(decimalFormat.format((first.getPerDayBalance()-second.getPerDayBalance())/10000));
+            vo.setFirstBalance(first.getBalance()/10000);
+            vo.setFirstPerDayBalance(first.getPerDayBalance()/10000);
+            vo.setSecondBalance(second.getBalance()/10000);
+            vo.setSecondPerDayBalance(second.getPerDayBalance()/10000);
+            vo.setDiffBalance((first.getBalance()-second.getBalance())/10000);
+            vo.setDiffPerDayBalance((first.getPerDayBalance()-second.getPerDayBalance())/10000);
             if(tempVo==null){
                 tempVo = vo;
             }else if(!tempVo.getDepartment().equalsIgnoreCase(vo.getDepartment())){
-                tempVo.setFirstTotalBalance(decimalFormat.format(firstTotalBalance/10000));
-                tempVo.setFirstTotalPerDayBalance(decimalFormat.format(firstTotalPerDayBalance/10000));
-                tempVo.setSecondTotalBalance(decimalFormat.format(secondTotalBalance/10000));
-                tempVo.setSecondTotalPerDayBalance(decimalFormat.format(secondTotalPerDayBalance/10000));
-                tempVo.setTotalDiffBalance(decimalFormat.format(totalDiffBalance/10000));
-                tempVo.setTotalDiffPerDayBalance(decimalFormat.format(totalDiffPerDayBalance/10000));
-                totalDiffBalance=0D;
-                totalDiffPerDayBalance=0D;
+                tempVo.setFirstTotalBalance(firstDepartmentTotalBalance/10000);
+                tempVo.setFirstTotalPerDayBalance(firstDepartmentTotalPerDayBalance/10000);
+                tempVo.setSecondTotalBalance(secondDepartmentTotalBalance/10000);
+                tempVo.setSecondTotalPerDayBalance(secondDepartmentTotalPerDayBalance/10000);
+                tempVo.setTotalDiffBalance(totalDepartmentDiffBalance/10000);
+                tempVo.setTotalDiffPerDayBalance(totalDepartmentDiffPerDayBalance/10000);
+                firstDepartmentTotalBalance=0D;firstDepartmentTotalPerDayBalance=0D;secondDepartmentTotalBalance=0D;
+                        secondDepartmentTotalPerDayBalance=0D;totalDepartmentDiffBalance=0;totalDepartmentDiffPerDayBalance=0;
                 tempVo = vo;
             }
-            firstTotalBalance=firstTotalBalance+first.getBalance();
-            firstTotalPerDayBalance=firstTotalPerDayBalance+first.getPerDayBalance();
-            secondTotalBalance=secondTotalBalance+second.getBalance();
-            secondTotalPerDayBalance=secondTotalPerDayBalance+first.getPerDayBalance();
-            totalDiffBalance = totalDiffBalance+(first.getBalance()-second.getBalance());
-            totalDiffPerDayBalance = totalDiffPerDayBalance+(first.getPerDayBalance()-second.getPerDayBalance());
+            firstDepartmentTotalBalance=firstDepartmentTotalBalance+first.getBalance();
+            firstDepartmentTotalPerDayBalance=firstDepartmentTotalPerDayBalance+first.getPerDayBalance();
+            secondDepartmentTotalBalance=secondDepartmentTotalBalance+second.getBalance();
+            secondDepartmentTotalPerDayBalance=secondDepartmentTotalPerDayBalance+first.getPerDayBalance();
+            totalDepartmentDiffBalance = totalDepartmentDiffBalance+(first.getBalance()-second.getBalance());
+            totalDepartmentDiffPerDayBalance = totalDepartmentDiffPerDayBalance+(first.getPerDayBalance()-second.getPerDayBalance());
+            //总额
+            firstTotalBalance=firstDepartmentTotalBalance+first.getBalance();
+            firstTotalPerDayBalance=firstDepartmentTotalPerDayBalance+first.getPerDayBalance();
+            secondTotalBalance=secondDepartmentTotalBalance+second.getBalance();
+            secondTotalPerDayBalance=secondDepartmentTotalPerDayBalance+first.getPerDayBalance();
             result.add(vo);
         }
         //最后一个部门的数据处理
-        tempVo.setFirstTotalBalance(decimalFormat.format(firstTotalBalance/10000));
-        tempVo.setFirstTotalPerDayBalance(decimalFormat.format(firstTotalPerDayBalance/10000));
-        tempVo.setSecondTotalBalance(decimalFormat.format(secondTotalBalance/10000));
-        tempVo.setSecondTotalPerDayBalance(decimalFormat.format(secondTotalPerDayBalance/10000));
-        tempVo.setTotalDiffBalance(decimalFormat.format(totalDiffBalance/10000));
-        tempVo.setTotalDiffBalance(decimalFormat.format(totalDiffBalance));
-        tempVo.setTotalDiffPerDayBalance(decimalFormat.format(totalDiffPerDayBalance));
+        tempVo.setFirstTotalBalance(firstDepartmentTotalBalance/10000);
+        tempVo.setFirstTotalPerDayBalance(firstDepartmentTotalPerDayBalance/10000);
+        tempVo.setSecondTotalBalance(secondDepartmentTotalBalance/10000);
+        tempVo.setSecondTotalPerDayBalance(secondDepartmentTotalPerDayBalance/10000);
+        tempVo.setTotalDiffBalance(totalDepartmentDiffBalance/10000);
+        tempVo.setTotalDiffBalance(totalDepartmentDiffBalance);
+        tempVo.setTotalDiffPerDayBalance(totalDepartmentDiffPerDayBalance);
 
+        log.info("{},{},{},{}",firstTotalBalance,firstTotalPerDayBalance,secondTotalBalance,secondTotalPerDayBalance);
         //保存修正后原始数据
         String[] firstnames = firstFile.getName().split("\\.");
         String[] secondnames = secondFile.getName().split("\\.");

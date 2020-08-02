@@ -14,7 +14,7 @@ public class CorrectStaff {
 
     static File correctAccountFile = new File("D:\\lzccb\\id_referer_correct.xlsx");
     static File correctRefererFile = new File("D:\\lzccb\\referer_correct.xlsx");
-    static File sourceFile =new File("D:\\lzccb\\20200430.xlsx");
+    static File sourceFile =new File("D:\\lzccb\\20200531.xlsx");
     public static void main(String[] args) {
         List<IdNumberStaff> idReffererList = ExcelUtils.readExcel(IdNumberStaff.class, correctAccountFile);
         Map<String,String> idReffererMap = new HashMap<>();
@@ -42,6 +42,9 @@ public class CorrectStaff {
         for (Deposit deposit:sourceDatas){
             //生成 未录推荐人信息的
             idName.put(deposit.getIdNumber(),deposit.getAccountName());
+//            if(deposit.getIdNumber().equalsIgnoreCase("510122196803290533")){
+//                System.out.println("510122196803290533");
+//            }
             //修正推荐人
             boolean ifChange = false;
             if(idReffererMap.containsKey(deposit.getIdNumber())){
@@ -72,20 +75,20 @@ public class CorrectStaff {
 //            }
         }
         //修正推荐人为空情况
-//        for (Deposit deposit:sourceDatas){
-//            if(StringUtils.isEmpty(deposit.getReferrer())){
-//                if(noIdBalance.containsKey(deposit.getIdNumber())){
-//                    if(noIdBalance.get(deposit.getIdNumber())>50000){
-//                        deposit.setReferrer("个人一部");
-//                    }else{
-//                        deposit.setReferrer("营业部");
-//                    }
-//                    System.out.println("推荐人为空 账号："+deposit.getIdNumber()+" 存款余额："+noIdBalance.get(deposit.getIdNumber())+" 推荐人修正为:"+deposit.getReferrer());
-//                }
-//
-//            }
-//        }
-//        System.out.println("推荐人为空账号 共："+noIdBalance.size());
+        for (Deposit deposit:sourceDatas){
+            if(StringUtils.isEmpty(deposit.getReferrer())){
+                if(noIdBalance.containsKey(deposit.getIdNumber())){
+                    if(noIdBalance.get(deposit.getIdNumber())>50000){
+                        deposit.setReferrer("个人业务一部");
+                    }else{
+                        deposit.setReferrer("营业部");
+                    }
+                    System.out.println("推荐人为空 账号："+deposit.getIdNumber()+" 存款余额："+noIdBalance.get(deposit.getIdNumber())+" 推荐人修正为:"+deposit.getReferrer());
+                }
+
+            }
+        }
+        System.out.println("推荐人为空账号 共："+noIdBalance.size());
         System.out.println(sourceFile.getName());
         String[] names = sourceFile.getName().split("\\.");
 //        ExcelUtils.writeExcel(sourceDatas,Deposit.class,names[0],"D:\\lzccb\\"+names[0]+"_修正.xlsx");
@@ -110,7 +113,7 @@ public class CorrectStaff {
             deposit.setPerDayBalance(noIdDayBalance.get(key));
             if(noIdBalance.get(key)>50000){
                 up5wMap.add(deposit);
-                up5wList.add(new IdNumberStaff(key,"个人一部"));
+                up5wList.add(new IdNumberStaff(key,"个人业务一部"));
             }else{
                 low5wMap.add(deposit);
                 low5wList.add(new IdNumberStaff(key,"营业部"));
@@ -120,6 +123,6 @@ public class CorrectStaff {
         idReffererList.addAll(low5wList);
         ExcelUtils.writeExcel(up5wMap,Deposit.class,"大于5万","D:\\lzccb\\20200430大于5万.xlsx");
         ExcelUtils.writeExcel(low5wMap,Deposit.class,"小于5万","D:\\lzccb\\20200430小于5万.xlsx");
-//        ExcelUtils.writeExcel(idReffererList,IdNumberStaff.class,"小于5万","D:\\lzccb\\账号推荐人修正_改.xlsx");
+        ExcelUtils.writeExcel(idReffererList,IdNumberStaff.class,"小于5万","D:\\lzccb\\账号推荐人修正_改.xlsx");
     }
 }

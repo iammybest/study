@@ -34,6 +34,8 @@ public class Deposit {
     private String referrer;
     @ExcelColumn(value = "推荐人2",col = 10)
     private String referrerTemp;
+    @ExcelColumn(value = "归入营业部规则",col = 11)
+    private String role;
 
     public String display(){
         return this.idNumber+",\t"+balance+",\t"+referrer;

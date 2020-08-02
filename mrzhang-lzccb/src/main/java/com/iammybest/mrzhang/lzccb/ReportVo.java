@@ -22,27 +22,27 @@ public class ReportVo {
     @ExcelColumn(value = "工号",col = 3)
     private String referrer;
     @ExcelColumn(value = "第一组剩余存款余额",col = 4)
-    private String firstBalance;
+    private Double firstBalance;
     @ExcelColumn(value = "第一组部门剩余存款余额",col = 5)
-    private String firstTotalBalance;
+    private Double firstTotalBalance;
     @ExcelColumn(value = "第一组日均存款余额",col = 6)
-    private String  firstPerDayBalance;
+    private Double  firstPerDayBalance;
     @ExcelColumn(value = "第一组部门日均存款余额",col = 7)
-    private String  firstTotalPerDayBalance;
+    private Double  firstTotalPerDayBalance;
     @ExcelColumn(value = "第二组剩余存款余额",col = 8)
-    private String secondBalance;
+    private Double secondBalance;
     @ExcelColumn(value = "第二组部门剩余存款余额",col = 9)
-    private String secondTotalBalance;
+    private Double secondTotalBalance;
     @ExcelColumn(value = "第二组日均存款余额",col = 10)
-    private String secondPerDayBalance;
+    private Double secondPerDayBalance;
     @ExcelColumn(value = "第二组部门日均存款余额",col = 11)
-    private String secondTotalPerDayBalance;
+    private Double secondTotalPerDayBalance;
     @ExcelColumn(value = "第一组与第二组存款余额差值",col = 12)
-    private String diffBalance;
+    private Double diffBalance;
     @ExcelColumn(value = "部门第一组与第二组存款余额差值总和",col = 13)
-    private String totalDiffBalance;
+    private Double totalDiffBalance;
     @ExcelColumn(value = "第一组与第二组存款余额差值",col = 14)
-    private String diffPerDayBalance;
+    private Double diffPerDayBalance;
     @ExcelColumn(value = "部门第一组与第二组存款余额差值总和",col = 15)
-    private String totalDiffPerDayBalance;
+    private Double totalDiffPerDayBalance;
 }

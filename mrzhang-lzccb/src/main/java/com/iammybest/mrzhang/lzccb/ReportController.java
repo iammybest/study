@@ -19,13 +19,13 @@ public class ReportController {
     StatisticsHandler statisticsHandler;
     @GetMapping("statistics")
     public String statistics(@RequestParam("sourceFileName")String sourceFileName){
-        return statisticsHandler.statistics(sourceFileName);
+        return statisticsHandler.statistics("D:\\lzccb\\20200723.xlsx");
     }
     @GetMapping("report")
     public String report(@RequestParam("firstSourceFileName")String firstSourceFileName,
                          @RequestParam("secondSourceFileName")String secondSourceFileName){
 
-        return statisticsHandler.report(firstSourceFileName,secondSourceFileName);
+        return statisticsHandler.report("D:\\lzccb\\20200723_统计结果.xlsx","D:\\lzccb\\20200716_统计结果.xlsx");
     }
 
 }
