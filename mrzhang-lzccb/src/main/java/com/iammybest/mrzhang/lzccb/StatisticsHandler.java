@@ -57,7 +57,7 @@ public class StatisticsHandler {
         Map<String,String> refererChangeMap = new HashMap<>();
         log.info("推荐人名称修正 参照表 总共{}条数据",refererChangeList.size());
         for (RefererChange accountStaff:refererChangeList){
-            refererChangeMap.put(accountStaff.getAccount(),accountStaff.getReferrer());
+            refererChangeMap.put(accountStaff.getAccount().toUpperCase(),accountStaff.getReferrer());
         }
         List<Deposit> sourceDatas = ExcelUtils.readExcel(Deposit.class, sourceFile);
         List<Deposit> yybDeposit = new ArrayList<>();
@@ -74,8 +74,8 @@ public class StatisticsHandler {
                     deposit.setRole("账号推荐人修正表修正");
                 }
             }
-            if(refererChangeMap.containsKey(deposit.getReferrer())){
-                deposit.setReferrer(refererChangeMap.get(deposit.getReferrer()));
+            if(!StringUtils.isEmpty(deposit.getReferrer())&&refererChangeMap.containsKey(deposit.getReferrer().toUpperCase())){
+                deposit.setReferrer(refererChangeMap.get(deposit.getReferrer().toUpperCase()));
             }
             //20200430以后再为空设置为 营业部
             if(StringUtils.isEmpty(deposit.getReferrer())){
@@ -100,18 +100,18 @@ public class StatisticsHandler {
                     referer.setReferrer("0"+ referer.getReferrer());
                 }
             }
-            refererBalanceMap.put(referer.getReferrer(), referer);
+            refererBalanceMap.put(referer.getReferrer().toUpperCase(), referer);
         }
         List<Deposit> noRefererDeposits = new ArrayList<>();
         double cntBalance = 0D;
         double cntPerDayBalance = 0D;
         for (Deposit deposit:sourceDatas){
-            if(refererBalanceMap.containsKey(deposit.getReferrer())){
-                refererBalanceMap.get(deposit.getReferrer()).setBalance(refererBalanceMap.get(deposit.getReferrer()).getBalance()+deposit.getBalance());
-                refererBalanceMap.get(deposit.getReferrer()).setPerDayBalance(refererBalanceMap.get(deposit.getReferrer()).getBalance()+deposit.getPerDayBalance());
-                if(refererBalanceMap.get(deposit.getReferrer()).getDepartment().equalsIgnoreCase("营业部")){
+            if(refererBalanceMap.containsKey(deposit.getReferrer().toUpperCase())){
+                refererBalanceMap.get(deposit.getReferrer().toUpperCase()).setBalance(refererBalanceMap.get(deposit.getReferrer().toUpperCase()).getBalance()+deposit.getBalance());
+                refererBalanceMap.get(deposit.getReferrer().toUpperCase()).setPerDayBalance(refererBalanceMap.get(deposit.getReferrer().toUpperCase()).getBalance()+deposit.getPerDayBalance());
+                if(refererBalanceMap.get(deposit.getReferrer().toUpperCase()).getDepartment().equalsIgnoreCase("营业部")){
                     if(StringUtils.isEmpty(deposit.getRole())){
-                        if(!refererBalanceMap.get(deposit.getReferrer()).getName().equalsIgnoreCase("营业部")){
+                        if(!refererBalanceMap.get(deposit.getReferrer().toUpperCase()).getName().equalsIgnoreCase("营业部")){
                             deposit.setRole("营业部员工");
                         }else{
                             deposit.setRole("原始数据为营业部");
