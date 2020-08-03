@@ -33,6 +33,8 @@
         <module>mrdeng-thread</module>
         <module>mrdeng-thrift</module>
         <module>mrdeng-multi-hibernate-datasource</module>
+        <module>mrdeng-hbase</module>
+        <module>mrdeng-sort</module>
     </modules>
     <properties>
         <lombok.version>1.18.6</lombok.version>
