@@ -46,10 +46,10 @@ public class QRCodeUtil {
 
     public static void main(String[] args) {
         try {
-            String content = "红包已领取，请查看余额" ;
-            QRCodeUtil.encodeQR("E:\\", "deng-qr.png", new String(content.getBytes(), "ISO-8859-1"));
+            String content = "https://v.qq.com/x/cover/mzc0020085s9l32/h3128gqxa09.html" ;
+            QRCodeUtil.encodeQR("D:\\", "vqq.png", new String(content.getBytes(), "ISO-8859-1"));
 
-            String contentISO = QRCodeUtil.decodeQR("E:\\deng-qr.png");
+            String contentISO = QRCodeUtil.decodeQR("D:\\vqq.png");
             System.out.println(content);
         } catch (WriterException e) {
             e.printStackTrace();

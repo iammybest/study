@@ -24,6 +24,7 @@
         <module>mrdeng-jdk8new</module>
         <module>mrdeng-kafka</module>
         <module>mrdeng-lock</module>
+        <module>mrdeng-log</module>
         <module>mrdeng-model</module>
         <module>mrdeng-mongo</module>
         <module>mrdeng-qr</module>
@@ -33,20 +34,20 @@
         <module>mrdeng-thread</module>
         <module>mrdeng-thrift</module>
         <module>mrdeng-multi-hibernate-datasource</module>
-        <module>mrdeng-hbase</module>
         <module>mrdeng-sort</module>
         <module>mrzhang-lzccb</module>
     </modules>
     <properties>
         <lombok.version>1.18.6</lombok.version>
+        <spring.version>5.1.14.RELEASE</spring.version>
         <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
+        <spring-boot-admin.version>2.1.0</spring-boot-admin.version>
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>2.11.1</log4j.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!--            dependecy module-->
             <dependency>
                 <groupId>com.iammybest.springboot</groupId>
                 <artifactId>mrdeng-domain</artifactId>
@@ -82,6 +83,48 @@
                 <artifactId>mrdeng-thrift</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <!-- spring -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-common-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <!-- 在starter包中排除老的logging包，为了避免引入logback，然后在项目中使用log4j2的starter -->
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+                <exclusions>
+                    <!-- 由于JCL的运行时查找实现类存在很多问题，Spring官方文档建议不再使用该框架，改由slf4j来输出日志 -->
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
             <dependency>
                 <!-- 通过BOM文件的方式引入spring boot，如果需要覆盖该BOM引入的包，请在该BOM之前定义需要覆盖的包 -->
                 <groupId>org.springframework.boot</groupId>
@@ -114,12 +157,6 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>log4j-over-slf4j</artifactId>
                 <version>${slf4j.version}</version>
-            </dependency>
-            <!-- end logger -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
