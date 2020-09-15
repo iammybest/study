@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/iammybest-spring-boot.iml" filepath="$PROJECT_DIR$/iammybest-spring-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/iammybest-springboot.iml" filepath="$PROJECT_DIR$/iammybest-springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mrdeng-actuator/mrdeng-actuator.iml" filepath="$PROJECT_DIR$/mrdeng-actuator/mrdeng-actuator.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-aliyunmq/mrdeng-aliyunmq.iml" filepath="$PROJECT_DIR$/mrdeng-aliyunmq/mrdeng-aliyunmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-annotation/mrdeng-annotation.iml" filepath="$PROJECT_DIR$/mrdeng-annotation/mrdeng-annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-collection/mrdeng-collection.iml" filepath="$PROJECT_DIR$/mrdeng-collection/mrdeng-collection.iml" />

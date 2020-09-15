@@ -8,37 +8,39 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mrdeng-distributed-lock" />
-        <module name="mrdeng-spring-mvc" />
+        <module name="mrzhang-lzccb" />
         <module name="mrdeng-qr" />
         <module name="vo" />
         <module name="mrdeng-dao" />
         <module name="mrdeng-lock" />
         <module name="mrdeng-sort" />
-        <module name="mrzhang-lzccb" />
+        <module name="mrdeng-vo" />
+        <module name="mrdeng-log" />
         <module name="mrdeng-ehcache" />
-        <module name="mrdeng-common" />
-        <module name="mrdeng-task-scheduler" />
+        <module name="mrdeng-actuator" />
         <module name="mrdeng-thrift" />
         <module name="mrdeng-aliyunmq" />
         <module name="mrdeng-mongo" />
         <module name="mrdeng-collection" />
+        <module name="mrdeng-spring-mvc" />
+        <module name="mrdeng-domain" />
         <module name="mrdeng-kafka" />
         <module name="mrdeng-thread" />
-        <module name="mrdeng-domain" />
+        <module name="mrdeng-io" />
+        <module name="mrdeng-common" />
         <module name="mrdeng-jdk8new" />
         <module name="mrdeng-annotation" />
-        <module name="mrdeng-multi-hibernate-datasource" />
         <module name="mrdeng-image" />
-        <module name="mrdeng-log" />
-        <module name="mrdeng-io" />
+        <module name="mrdeng-task-scheduler" />
+        <module name="mrdeng-multi-hibernate-datasource" />
         <module name="mrdeng-solr" />
         <module name="mrdeng-model" />
-        <module name="mrdeng-vo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="iammybest-spring-boot" target="1.5" />
       <module name="iammybest-springboot" target="1.5" />
+      <module name="mrdeng-actuator" target="1.5" />
       <module name="mrdeng-aliyunmq" target="1.5" />
       <module name="mrdeng-annotation" target="1.5" />
       <module name="mrdeng-collection" target="8" />
@@ -71,6 +73,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mrdeng-actuator" options="" />
       <module name="mrdeng-kafka" options="" />
       <module name="mrdeng-log" options="" />
     </option>
