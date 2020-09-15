@@ -18,9 +18,7 @@ import javax.annotation.Resource;
  * @TIME: 2020/3/27 16:53
  * @AUTHOR: qinghai.deng
  **/
-@Configuration(
-        proxyBeanMethods = false
-)
+@Configuration
 @EnableConfigurationProperties({ByteArrayKafkaProperties.class})
 @Log4j2
 public class ByteArrayKafkaConfigure  extends DengKafkaConfigure{

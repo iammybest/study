@@ -14,18 +14,15 @@ import java.util.Map;
  **/
 @Slf4j
 public class EntitySerializer implements Serializer<KafkaEntity> {
-    @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
         log.info("Deng|自定义序列化组件EntitySerializer|configure");
     }
 
-    @Override
     public byte[] serialize(String s, KafkaEntity kafkaEntity) {
         log.info("Deng|自定义序列化组件EntitySerializer|serialize");
         return JSON.toJSONBytes(kafkaEntity);
     }
 
-    @Override
     public void close() {
         log.info("Deng|自定义序列化组件|close");
     }

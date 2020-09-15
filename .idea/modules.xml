@@ -6,12 +6,12 @@
       <module fileurl="file://$PROJECT_DIR$/iammybest-springboot.iml" filepath="$PROJECT_DIR$/iammybest-springboot.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-aliyunmq/mrdeng-aliyunmq.iml" filepath="$PROJECT_DIR$/mrdeng-aliyunmq/mrdeng-aliyunmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-annotation/mrdeng-annotation.iml" filepath="$PROJECT_DIR$/mrdeng-annotation/mrdeng-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mrdeng-collection/mrdeng-collection.iml" filepath="$PROJECT_DIR$/mrdeng-collection/mrdeng-collection.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-common/mrdeng-common.iml" filepath="$PROJECT_DIR$/mrdeng-common/mrdeng-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-dao/mrdeng-dao.iml" filepath="$PROJECT_DIR$/mrdeng-dao/mrdeng-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-distributed-lock/mrdeng-distributed-lock.iml" filepath="$PROJECT_DIR$/mrdeng-distributed-lock/mrdeng-distributed-lock.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-domain/mrdeng-domain.iml" filepath="$PROJECT_DIR$/mrdeng-domain/mrdeng-domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-ehcache/mrdeng-ehcache.iml" filepath="$PROJECT_DIR$/mrdeng-ehcache/mrdeng-ehcache.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mrdeng-hbase/mrdeng-hbase.iml" filepath="$PROJECT_DIR$/mrdeng-hbase/mrdeng-hbase.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-image/mrdeng-image.iml" filepath="$PROJECT_DIR$/mrdeng-image/mrdeng-image.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-io/mrdeng-io.iml" filepath="$PROJECT_DIR$/mrdeng-io/mrdeng-io.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-jdk8new/mrdeng-jdk8new.iml" filepath="$PROJECT_DIR$/mrdeng-jdk8new/mrdeng-jdk8new.iml" />
