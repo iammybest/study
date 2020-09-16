@@ -27,7 +27,7 @@ public abstract class DengKafkaConfigure {
     protected abstract void setProperties();
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, KafkaEntity>> kafkaListenerContainerFactory() {
         log.info("Deng|初始化kafkaListenerContainerFactory");
-        ConcurrentKafkaListenerContainerFactory container = new ConcurrentKafkaListenerContainerFactory();
+        ConcurrentKafkaListenerContainerFactory container = new ConcurrentKafkaListenerContainerFactory<>();
         container.setConsumerFactory(kafkaConsumerFactory());
         container.setBatchListener(true);
         return container;

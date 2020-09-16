@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by MrDeng on 2017/1/11.
  */
 public class ConcHashMapTest {
-    private static ConcurrentHashMap<String, AtomicLong> map = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, AtomicLong> map = new ConcurrentHashMap();
     public static  void main(String[] args) {
         for (int i = 0; i < 30; i++) {
             new Thread(new AtomicAdd(map,(i%6+1)+"",i+1)).start();

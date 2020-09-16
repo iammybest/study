@@ -1,14 +1,16 @@
 package com.iammybest.thread.join;
 
-import java.util.Date;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Random;
 
 /**
  * Created by MrDeng on 2017/4/11.
  */
-public class JoinThread implements Runnable{
 
+public class JoinThread implements Runnable{
+    private static  final Logger logger = LoggerFactory.getLogger(JoinThread.class);
     private String threadName;
 
     public JoinThread(String threadName){
@@ -21,15 +23,14 @@ public class JoinThread implements Runnable{
     public void setThreadName(String threadName) {
         this.threadName = threadName;
     }
-
+    static final Random r = new Random();
     @Override
     public void run() {
         try {
-            System.out.printf("Thread:%s start at %s.......",this.threadName,new Date());
-            System.out.println();
-            Thread.sleep(5);
-            System.out.printf("Thread:%s end at %s.......",this.threadName,new Date());
-            System.out.println();
+            logger.info("Thread:{} start at {}",this.threadName,System.currentTimeMillis());
+            long sleep = r.nextInt(3000);
+            Thread.sleep(sleep);
+            logger.info("Thread:{} end at {},Spend time:{}",this.threadName,System.currentTimeMillis(),sleep);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

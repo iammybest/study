@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -257,6 +258,8 @@ public class ExcelUtils {
         if(standardCol!=null&&mergeCols!=null){
             logger.info("需按照{}列内容是否一致合并单元格{}",standardCol,mergeCols);
         }
+        CellStyle regionStyle = wb.createCellStyle(); // 样式对象（正文）
+        regionStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
         Object standardValue = "";
         int startMergeRow = 1;
         int endMergeRow = 1;
@@ -281,6 +284,7 @@ public class ExcelUtils {
                                     CellRangeAddress region = new CellRangeAddress(startMergeRow, endMergeRow, standardCol-1, standardCol-1);
                                     sheet.addMergedRegion(region);
                                     for(Integer mergeCol:mergeCols){
+                                        sheet.getRow(startMergeRow).getCell(mergeCol-1).setCellStyle(regionStyle);
                                         region = new CellRangeAddress(startMergeRow, endMergeRow, mergeCol-1, mergeCol-1);
                                         sheet.addMergedRegion(region);
                                     }

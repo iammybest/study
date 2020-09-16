@@ -26,7 +26,7 @@ public class ProviderThread implements Runnable {
     }
 
     public static void main(String[] args) {
-        BlockQueue<String> blockQueue =new BlockQueue<>();
+        BlockQueue<String> blockQueue =new BlockQueue();
         new Thread(new ConsumerThread(blockQueue)).start();
         new Thread(new ProviderThread(blockQueue)).start();
         ConcurrentHashMap map =new ConcurrentHashMap();
