@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.iammybest.springboot</groupId>
-        <artifactId>iammybest-spring-boot</artifactId>
+        <groupId>com.iammybest.study</groupId>
+        <artifactId>iammybest-study</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <artifactId>mrdeng-kafka</artifactId>
-    <groupId>com.iammybest.springboot</groupId>
+    <groupId>com.iammybest.study</groupId>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -35,7 +35,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.iammybest.springboot</groupId>
+            <groupId>com.iammybest.study</groupId>
             <artifactId>mrdeng-vo</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->

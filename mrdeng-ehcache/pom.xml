@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.iammybest.springboot</groupId>
-        <artifactId>iammybest-spring-boot</artifactId>
+        <groupId>com.iammybest.study</groupId>
+        <artifactId>iammybest-study</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mrdeng-ehcache</artifactId>
     <packaging>jar</packaging>
-    <groupId>com.iammybest.springboot</groupId>
+    <groupId>com.iammybest.study</groupId>
 
 
     <properties>

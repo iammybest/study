@@ -3,11 +3,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.iammybest.springboot</groupId>
-    <artifactId>iammybest-spring-boot</artifactId>
+    <groupId>com.iammybest.study</groupId>
+    <artifactId>iammybest-study</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>iammybest-spring-boot</name>
+    <name>iammybest-study</name>
 
     <modules>
         <module>mrdeng-actuator</module>
@@ -24,6 +24,8 @@
         <module>mrdeng-jdk8new</module>
         <module>mrdeng-kafka</module>
         <module>mrdeng-lock</module>
+        <module>mrdeng-log</module>
+        <module>mrdeng-hbase</module>
         <module>mrdeng-model</module>
         <module>mrdeng-mongo</module>
         <module>mrdeng-qr</module>
@@ -48,37 +50,37 @@
         <dependencies>
             <!--            dependecy module-->
             <dependency>
-                <groupId>com.iammybest.springboot</groupId>
+                <groupId>com.iammybest.study</groupId>
                 <artifactId>mrdeng-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iammybest.springboot</groupId>
+                <groupId>com.iammybest.study</groupId>
                 <artifactId>mrdeng-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iammybest.springboot</groupId>
+                <groupId>com.iammybest.study</groupId>
                 <artifactId>mrdeng-vo</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iammybest.springboot</groupId>
+                <groupId>com.iammybest.study</groupId>
                 <artifactId>mrdeng-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iammybest.springboot</groupId>
+                <groupId>com.iammybest.study</groupId>
                 <artifactId>mrdeng-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iammybest.springboot</groupId>
+                <groupId>com.iammybest.study</groupId>
                 <artifactId>mrdeng-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.iammybest.springboot</groupId>
+                <groupId>com.iammybest.study</groupId>
                 <artifactId>mrdeng-thrift</artifactId>
                 <version>${project.version}</version>
             </dependency>
