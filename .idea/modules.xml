@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/iammybest-spring-boot.iml" filepath="$PROJECT_DIR$/iammybest-spring-boot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/iammybest-springboot.iml" filepath="$PROJECT_DIR$/iammybest-springboot.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-aliyunmq/mrdeng-aliyunmq.iml" filepath="$PROJECT_DIR$/mrdeng-aliyunmq/mrdeng-aliyunmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-annotation/mrdeng-annotation.iml" filepath="$PROJECT_DIR$/mrdeng-annotation/mrdeng-annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-common/mrdeng-common.iml" filepath="$PROJECT_DIR$/mrdeng-common/mrdeng-common.iml" />
@@ -30,7 +29,6 @@
       <module fileurl="file://$PROJECT_DIR$/mrdeng-thrift/mrdeng-thrift.iml" filepath="$PROJECT_DIR$/mrdeng-thrift/mrdeng-thrift.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrdeng-vo/mrdeng-vo.iml" filepath="$PROJECT_DIR$/mrdeng-vo/mrdeng-vo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mrzhang-lzccb/mrzhang-lzccb.iml" filepath="$PROJECT_DIR$/mrzhang-lzccb/mrzhang-lzccb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vo/vo.iml" filepath="$PROJECT_DIR$/vo/vo.iml" />
     </modules>
   </component>
 </project>

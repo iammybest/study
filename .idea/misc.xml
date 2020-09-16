@@ -7,9 +7,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/mrdeng-distributed-lock/pom.xml" />
-        <option value="$PROJECT_DIR$/mrdeng-lock/pom.xml" />
-        <option value="$PROJECT_DIR$/mrdeng-log/pom.xml" />
       </list>
     </option>
   </component>
