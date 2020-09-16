@@ -1,4 +1,4 @@
-package com.iammybest.springboot.collection;
+package com.iammybest.study.collection;
 
 public class RuntimeLeanning {
     public static void main(String[] args) {

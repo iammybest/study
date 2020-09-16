@@ -1,4 +1,4 @@
-package com.iammybest.springboot.collection;
+package com.iammybest.study.collection;
 
 import lombok.extern.slf4j.Slf4j;
 

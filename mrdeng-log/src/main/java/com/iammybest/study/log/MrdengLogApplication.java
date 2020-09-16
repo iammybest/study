@@ -1,4 +1,4 @@
-package com.iammybest.springboot.log;
+package com.iammybest.study.log;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

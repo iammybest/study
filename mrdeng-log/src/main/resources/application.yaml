@@ -2,4 +2,4 @@ server:
   port: 9141
 logging:
   level:
-    com.iammybest.sprinboot.log: info
+    com.iammybest.study.log: info

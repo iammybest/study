@@ -1,4 +1,4 @@
-package com.iammybest.springboot.log;
+package com.iammybest.study.log;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
