@@ -36,11 +36,8 @@
         <module>mrdeng-multi-hibernate-datasource</module>
         <module>mrdeng-sort</module>
         <module>mrzhang-lzccb</module>
-<<<<<<< HEAD
         <module>mrdeng-quartz</module>
-=======
         <module>mrdeng-collection</module>
->>>>>>> 7af9c3ef8b116229dac193ce3de8bf20e8df57ad
     </modules>
     <properties>
         <lombok.version>1.18.6</lombok.version>
