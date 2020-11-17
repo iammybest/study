@@ -12,24 +12,25 @@
         <module name="mrdeng-thrift" />
         <module name="mrdeng-dao" />
         <module name="mrdeng-lock" />
+        <module name="mrdeng-thread" />
         <module name="mrdeng-sort" />
-        <module name="mrdeng-log" />
-        <module name="mrdeng-solr" />
-        <module name="mrdeng-hbase" />
-        <module name="mrdeng-io" />
+        <module name="mrdeng-multi-hibernate-datasource" />
+        <module name="mrdeng-quartz" />
+        <module name="mrdeng-spring-mvc" />
+        <module name="mrdeng-common" />
+        <module name="mrdeng-task-scheduler" />
         <module name="mrdeng-ehcache" />
         <module name="mrdeng-mongo" />
-        <module name="mrdeng-spring-mvc" />
-        <module name="mrdeng-domain" />
+        <module name="mrdeng-hbase" />
         <module name="mrdeng-kafka" />
-        <module name="mrdeng-thread" />
-        <module name="mrdeng-common" />
+        <module name="mrdeng-solr" />
+        <module name="mrdeng-domain" />
         <module name="mrdeng-jdk8new" />
         <module name="mrdeng-annotation" />
         <module name="mrdeng-aliyunmq" />
         <module name="mrdeng-image" />
-        <module name="mrdeng-task-scheduler" />
-        <module name="mrdeng-multi-hibernate-datasource" />
+        <module name="mrdeng-log" />
+        <module name="mrdeng-io" />
         <module name="mrdeng-model" />
         <module name="mrdeng-vo" />
       </profile>
@@ -54,6 +55,7 @@
       <module name="mrdeng-mongo" target="1.5" />
       <module name="mrdeng-multi-hibernate-datasource" target="1.7" />
       <module name="mrdeng-qr" target="7" />
+      <module name="mrdeng-quartz" target="1.5" />
       <module name="mrdeng-solr" target="1.5" />
       <module name="mrdeng-sort" target="1.7" />
       <module name="mrdeng-spring-mvc" target="1.5" />
