@@ -1,0 +1,14 @@
+server:
+  port: 9900
+info:
+  version: 1.0.0-SNAPSHOT
+logging:
+  level:
+    com.iammybest: debug
+management:
+  endpoints:
+    enabled: true
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
